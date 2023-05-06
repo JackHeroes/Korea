@@ -388,14 +388,20 @@ footer p {
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
 
     #aboutus-1 img, 
     #aboutus-2 img {
-        margin-bottom: 1rem;
-        margin-top: 1rem;
         width: 10rem;
     }
+
+    #text-1 p,
+    #text-2 p {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
 
     #form-contact input,
     #form-contact textarea {
@@ -405,9 +411,19 @@ footer p {
 
 @media only screen and (max-width: 500px) {
 
+    h2, h3 {
+        font-size: 2.5rem;
+    }
+
     #aboutus-1, 
     #aboutus-2 {
         flex-wrap: wrap;
+    }
+
+    #aboutus-1 img, 
+    #aboutus-2 img {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
     }
 }
 
@@ -424,12 +440,21 @@ footer p {
         font-size: 2rem;
     }
 
-    .text-1 p,
-    .text-2 p {
+    #text-1,
+    #text-2 {
+        margin: 0;
+    }
+
+    #text-1 p,
+    #text-2 p {
         font-size: 1rem;
     }
 
     #form-contact button {
         width: auto;
     }    
+
+    footer p {
+        font-size: .8rem;
+    }
 }
