@@ -139,17 +139,20 @@
         </section>  
         <section id="contact-container">
             <h3>Entre em Contato Conosco</h3>
-            <form id="form-contact">
-                <input type="text" name="Nome" id="nome" placeholder="Nome" required>
-                <input type="email" name="E-mail" id="email" placeholder="E-mail" required>
-                <textarea name="Mensagem" id="mensagem" placeholder="Escreva sua mensagem" required></textarea> 
+            <form method="post" action="{% url 'enviar_email' %}" id="form-contact">
+                {% csrf_token %}
+                <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                <input type="email" name="email" id="email" placeholder="E-mail" required>
+                <textarea name="mensagem" id="mensagem" placeholder="Escreva sua mensagem" required></textarea> 
                 <button type="submit">Enviar</button>
             </form>
+            <div id="alert-container"></div>
         </section> 
     </main>
     <footer>
         <p>Copyright &copy; <span id="year"></span> | João Felipe. Todos os direitos reservados</p>
     </footer>
     <script src="/static/js/script.js"></script>
+    <script src="/static/js/sendEmail.js"></script>
 </body>
 </html>
