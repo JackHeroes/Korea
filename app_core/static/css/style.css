@@ -337,6 +337,14 @@ h2, h3 {
     background-color: #FFC3D8;
 }
 
+.alert-success, .alert-danger {
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Footer */
 
 footer {
