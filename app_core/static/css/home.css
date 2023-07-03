@@ -231,6 +231,11 @@ h2, h3 {
     margin-right: .5rem;
 }
 
+#aboutus-1 img,
+#aboutus-2 img {
+    border-radius: 0.5rem;
+}
+
 #aboutus-1 {
     justify-content: flex-start;
 }
@@ -281,6 +286,7 @@ h2, h3 {
 #candy-section-3 img {
     height: 100%;
     width: 100%;
+    border-radius: .5rem;
 }
 
 /* Contact */
@@ -288,6 +294,15 @@ h2, h3 {
 #contact-container {
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+#contact-container .input-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
 }
 
 #form-contact input,
@@ -299,6 +314,7 @@ h2, h3 {
     margin-bottom: 1rem;
     padding: 1rem;
     width: 40%;
+    border-radius: .5rem;
 }
 
 #form-contact textarea {
@@ -320,6 +336,7 @@ h2, h3 {
 #form-contact button {
     background-color: #F6689A;
     border: none;
+    border-radius: .5rem;
     color: #0D1612;
     cursor: pointer;
     display: block;
@@ -331,6 +348,7 @@ h2, h3 {
     text-decoration: none;
     transition: .5s;
     width: 12rem;
+    font-weight: bold;
 }
 
 #form-contact button:hover {

@@ -5,32 +5,35 @@ from django.http import JsonResponse
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'index.html')
+    
 def sendEmail(request):
     if request.method == 'POST':
-        nome = request.POST['nome']
+        name = request.POST['name']
         email = request.POST['email']
-        mensagem = request.POST['mensagem']
+        message = request.POST['message']
 
         # Configuração do e-mail
-        remetente = settings.EMAIL_HOST_USER
-        destinatario = 'JohnHeroes@outlook.com.br'
-        assunto = 'Novo formulário de contato recebido'
+        sender = settings.EMAIL_HOST_USER
+        recipient = 'JohnHeroes@outlook.com.br'
+        subject = 'Novo formulário de contato recebido'
         
         # Corpo do e-mail
-        texto = f'''
-        Nome: {nome}
+        text = f'''
+        Nome: {name}
         E-mail: {email}
-        Mensagem: {mensagem}
+        Mensagem: {message}
         '''
 
         try:
             # Configuração e envio do e-mail
             send_mail(
-                subject=assunto,
-                message=texto,
-                from_email=remetente,
-                recipient_list=[destinatario],
-                fail_silently=False,
+                subject = subject,
+                message = text,
+                from_email = sender,
+                recipient_list = [recipient],
+                fail_silently = False,
             )
 
             # Retorna uma resposta JSON indicando sucesso

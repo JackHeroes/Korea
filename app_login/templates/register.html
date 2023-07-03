@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#0d1612">
+    <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#0d1612">
+    <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#0d1612">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section id="background">
+            <a href="{% url 'login' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
+            <section id="container">
+                <section id="banner-container">
+                </section>
+                <section id="register-container">
+                    <h1>Crie a sua conta</h1>
+                    <form action="" id="form-register">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <input type="text" name="firstName" id="firstName" placeholder="Nome" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="lastName" id="lastName" placeholder="Sobrenome" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="email" name="email" id="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="password" name="password" id="password" placeholder="Senha" required>
+                            <i class="bx bx-show-alt" id="eye" onclick="showPassword()"></i>
+                        </div>
+                        <div class="input-container">
+                            <button type="submit">Criar conta</button>
+                        </div>
+                    </form>
+                </section>
+            </section>
+        </section>
+    </main>
+    <script src="/static/js/loginScripts.js"></script>
+</body>
+</html>

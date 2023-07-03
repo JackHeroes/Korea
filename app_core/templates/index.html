@@ -15,7 +15,7 @@
     <meta name="msapplication-TileColor" content="#0d1612">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <meta name="theme-color" content="#0d1612">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/home.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
@@ -26,56 +26,55 @@
         </div>
         <nav class="sidebar">
             <div class="logo-details">
-                <img src="/static/img/logo.svg" class="logo icon" alt="Logo">
                 <h1 class="logo-name">Doceria Korea</h1>
                 <i class='bx bx-menu' id="btn"></i>
             </div>
             <ul class="nav-list">
                 <li>
                     <a href="#aboutus-container-1">
-                        <i class='menu-icon bx bx-home-alt'></i>
+                        <i class="menu-icon bx bx-home-alt"></i>
                         <span class="links-name">Bem Vindo</span>
                     </a>
                     <span class="tooltip">Bem Vindo</span>
                 </li>
                 <li>
                     <a href="#aboutus-container-2">
-                        <i class='menu-icon bx bx-user' ></i>
+                        <i class="menu-icon bx bx-user"></i>
                         <span class="links-name">Sobre Nós</span>
                     </a>
                     <span class="tooltip">Sobre Nós</span>
                 </li>
                 <li>
                     <a href="#candy-container-1">
-                        <i class='menu-icon bx bx-cake' ></i>
+                        <i class="menu-icon bx bx-cake"></i>
                         <span class="links-name">Cupcake de Chocolate</span>
                     </a>
                     <span class="tooltip">Cupcake de Chocolate</span>
                 </li>
                 <li>
                     <a href="#candy-container-2">
-                        <i class='menu-icon bx bx-cake' ></i>
+                        <i class="menu-icon bx bx-cake"></i>
                         <span class="links-name">Cupcake de Chocolate ao Leite</span>
                     </a>
                     <span class="tooltip">Cupcake de Chocolate ao Leite</span>
                 </li>
                 <li>
                     <a href="#candy-container-3">
-                        <i class='menu-icon bx bx-cake' ></i>
+                        <i class="menu-icon bx bx-cake"></i>
                         <span class="links-name">Bolo Red Velvet</span>
                     </a>
                     <span class="tooltip">Bolo Red Velvet</span>
                 </li>
                 <li>
                     <a href="#contact-container">
-                        <i class='menu-icon bx bx-chat'></i>
+                        <i class="menu-icon bx bx-chat"></i>
                         <span class="links-name">Entre em Contato Conosco</span>
                     </a>
                     <span class="tooltip">Entre em Contato Conosco</span>
                 </li>
                 <li>
-                    <a href="">
-                        <i class='menu-icon bx bx-log-in-circle' ></i>
+                    <a href="{% url 'login' %}">
+                        <i class="menu-icon bx bx-log-in-circle"></i>
                         <span class="links-name">Login</span>
                     </a>
                     <span class="tooltip">Faça seu login</span>
@@ -139,12 +138,20 @@
         </section>  
         <section id="contact-container">
             <h3>Entre em Contato Conosco</h3>
-            <form method="post" action="{% url 'sendEmail' %}" id="form-contact">
+            <form method="post" action="{% url 'send-email' %}" id="form-contact">
                 {% csrf_token %}
-                <input type="text" name="nome" id="nome" placeholder="Nome" required>
-                <input type="email" name="email" id="email" placeholder="E-mail" required>
-                <textarea name="mensagem" id="mensagem" placeholder="Escreva sua mensagem" required></textarea> 
-                <button type="submit">Enviar</button>
+                <div class="input-container">
+                    <input type="text" name="name" id="name" placeholder="Nome" required>
+                </div>
+                <div class="input-container">
+                    <input type="email" name="email" id="email" placeholder="E-mail" required>
+                </div>
+                <div class="input-container">
+                    <textarea name="message" id="message" placeholder="Escreva sua mensagem" required></textarea> 
+                </div>
+                <div class="input-container">
+                    <button type="submit">Enviar</button>
+                </div>
             </form>
             <div id="alert-container"></div>
         </section> 
@@ -152,7 +159,7 @@
     <footer>
         <p>Copyright &copy; <span id="year"></span> | João Felipe. Todos os direitos reservados</p>
     </footer>
-    <script src="/static/js/script.js"></script>
+    <script src="/static/js/homeScripts.js"></script>
     <script src="/static/js/sendEmail.js"></script>
 </body>
 </html>

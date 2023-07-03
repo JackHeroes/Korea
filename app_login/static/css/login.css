@@ -1,0 +1,173 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#background {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6689A;
+}
+
+#background #return {
+    font-size: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFFFFF;
+    padding: 2rem;
+}
+
+#container {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+}
+
+#banner-container {
+    height: 100%;
+    width: 60%;
+    background-image: url(../img/banner.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 2rem 0 0 2rem;
+}
+
+#login-container,
+#register-container {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#login-container .input-container,
+#register-container .input-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+#login-container h1,
+#register-container h1 {
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#login-container #form-login,
+#register-container #form-register {
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+#login-container #form-login input,
+#register-container #form-register input {
+    border: 0.10rem solid #F6689A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: .5rem;
+}
+
+#login-container #form-login input:focus
+#register-container #form-register input:focus {
+    background: #FFC3D8;
+    border: 0.10rem solid #0D1612;
+    outline: none;   
+}
+
+#login-container #form-login::placeholder,
+#register-container #form-register::placeholder {
+    color: #F6689A;
+}
+
+#login-container #form-login #eye,
+#register-container #form-register #eye {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #F6689A;
+    cursor: pointer;
+    right: 0;
+}
+
+#login-container #form-login button,
+#register-container #form-register button {
+    background-color: #F6689A;
+    border: none;
+    color: #0D1612;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+    width: 80%;
+    font-weight: bold;
+    border-radius: .5rem;
+}
+
+#login-container #form-login button:hover,
+#register-container #form-register button:hover {
+    background-color: #FFC3D8;
+}
+
+#login-container a {
+    text-decoration: none;
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    transition: .5s;
+}
+
+#login-container a:hover {
+    transition: .5s;
+    color: #FFC3D8;
+}
+
+.alert-success, 
+.alert-danger {
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
