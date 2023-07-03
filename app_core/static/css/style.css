@@ -324,7 +324,7 @@ h2, h3 {
     cursor: pointer;
     display: block;
     font-size: 1rem;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
     margin-left: 0;
     padding: 1.5rem 2.5rem;
     text-align: center;
@@ -337,12 +337,14 @@ h2, h3 {
     background-color: #FFC3D8;
 }
 
-.alert-success, .alert-danger {
+.alert-success, 
+.alert-danger {
     color: #F6689A;
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    width: 40%;
 }
 
 /* Footer */
@@ -353,6 +355,7 @@ footer {
     display: flex;
     justify-content: center;
     margin-left: auto;
+    margin-top: 4rem;
     padding: 4rem;
     width: calc(100% - 78px);
 }

@@ -8,7 +8,7 @@ from django.http import JsonResponse
 def index(request):
     return render(request, "index.html")
     
-def enviar_email(request):
+def sendEmail(request):
     if request.method == 'POST':
         nome = request.POST['nome']
         email = request.POST['email']

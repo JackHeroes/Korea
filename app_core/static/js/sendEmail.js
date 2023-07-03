@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         alertContainer.innerHTML = alertHTML;
         setTimeout(function() {
             alertContainer.innerHTML = '';
-        }, 5000); // Remove o alerta após 5 segundos
+        }, 5000); 
     }
 
     function getCookie(name) {

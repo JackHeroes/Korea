@@ -139,7 +139,7 @@
         </section>  
         <section id="contact-container">
             <h3>Entre em Contato Conosco</h3>
-            <form method="post" action="{% url 'enviar_email' %}" id="form-contact">
+            <form method="post" action="{% url 'sendEmail' %}" id="form-contact">
                 {% csrf_token %}
                 <input type="text" name="nome" id="nome" placeholder="Nome" required>
                 <input type="email" name="email" id="email" placeholder="E-mail" required>
