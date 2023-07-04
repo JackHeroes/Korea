@@ -28,7 +28,7 @@
                 </section>
                 <section id="register-container">
                     <h1>Crie a sua conta</h1>
-                    <form action="" id="form-register">
+                    <form method="post" action="{% url 'register' %}" id="form-register">
                         {% csrf_token %}
                         <div class="input-container">
                             <input type="text" name="firstName" id="firstName" placeholder="Nome" required>

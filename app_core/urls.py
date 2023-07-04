@@ -3,5 +3,5 @@ from app_core import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('send-email/', views.sendEmail, name='send-email'),
+    path('send-email/', views.form_sendEmail, name='send-email'),
 ]

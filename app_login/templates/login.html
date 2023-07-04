@@ -28,10 +28,10 @@
                 </section>
                 <section id="login-container">
                     <h1>Entre na sua conta</h1>
-                    <form action="" id="form-login">
+                    <form method="post" action="{% url 'login' %}" id="form-login">
                         {% csrf_token %}
                         <div class="input-container">
-                            <input type="text" name="user" id="user" placeholder="Usuário" required>
+                            <input type="email" name="email" id="email" placeholder="E-mail" required>
                         </div>
                         <div class="input-container">
                             <input type="password" name="password" id="password" placeholder="Senha" required>
