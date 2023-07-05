@@ -402,6 +402,31 @@ footer p {
     background-color: #F6689A;
 }
 
+/* Message */
+
+.messages {
+    list-style-type: none;
+    padding: .5rem;
+}
+  
+.message {
+    padding: .5rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+  
+.error {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+  
+.success {
+    background-color: #008000;
+    color: #FFFFFF;
+}
+
 /* Responsiveness */
 
 @media only screen and (max-width: 1100px) {

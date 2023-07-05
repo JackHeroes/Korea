@@ -19,17 +19,18 @@ def form_register(request):
         email = request.POST['email']
         password = request.POST['password']
 
-        # Verificar se o nome de usuário já existe
         if User.objects.filter(username=username).exists():
-            return render(request, 'register.html', {'error': 'Este nome de usuário já está em uso.'})
+            messages.error(request, 'Este nome de usuário já está em uso.')
+            return render(request, 'register.html')
         
         if User.objects.filter(email=email).exists():
-            return render(request, 'register.html', {'error': 'Este email já está em uso.'})
+            messages.error(request, 'Este email já está em uso.')
+            return render(request, 'register.html')
 
         if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', password):
-            return render(request, 'register.html', {'error': 'A senha deve conter pelo menos um caractere especial, letras, números e ter no mínimo 8 caracteres.'})
+            messages.error(request, 'A senha deve conter letras, números, pelo menos um caractere especial e ter no mínimo 8 caracteres.')
+            return render(request, 'register.html')
 
-        # Cadastrar o novo usuário
         user = User.objects.create_user(username=username, first_name=firstName, last_name=lastName, email=email, password=password)
         login(request, user)
         messages.success(request, 'Conta criada com sucesso!')
@@ -46,7 +47,8 @@ def form_login(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'Credenciais inválidas.'})
+            messages.error(request, 'Credenciais inválidas.')
+            return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
@@ -60,51 +62,42 @@ def forgotPassword(request):
             subject = 'Redefinição de Senha'
             message = f'Clique no link a seguir para redefinir sua senha: {reset_url}'
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
+
             messages.success(request, 'Um email com instruções para redefinir a senha foi enviado para o seu endereço de email.')
 
             if request.user.is_authenticated:
-                return redirect('account')  # Redireciona para a página de conta se o usuário estiver logado
+                return redirect('account')  
             else:
-                return redirect('login')  # Redireciona para a página de login se o usuário não estiver logado
+                return redirect('login') 
         except User.DoesNotExist:
             messages.error(request, 'O email fornecido não está associado a uma conta.')
-    
-    return render(request, 'forgotPassword.html')
 
+    return render(request, 'forgotPassword.html')
+    
 def redefinePassword(request, user_id, reset_code):
-    # Verificar se o usuário com o ID fornecido existe
     try:
         user = User.objects.get(id=user_id)
     except User.DoesNotExist:
         messages.error(request, 'Usuário não encontrado.')
-        return redirect('login')  # Redirecionar para a página de login ou outra adequada
-
-    # Verificar se o código de redefinição é válido para o usuário
     if not default_token_generator.check_token(user, reset_code):
         messages.error(request, 'Código de redefinição de senha inválido.')
-        return redirect('login')  # Redirecionar para a página de login ou outra adequada
-
     if request.method == 'POST':
         newPassword1 = request.POST.get('newPassword1')
         newPassword2 = request.POST.get('newPassword2')
-
         if newPassword1 != newPassword2:
             messages.error(request, 'As senhas não coincidem.')
         else:
-            # Verificar se a nova senha atende aos critérios
             if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', newPassword1):
-                messages.error(request, 'A nova senha deve conter pelo menos um caractere especial, letras, números e ter no mínimo 8 caracteres.')
+                messages.error(request, 'A senha deve conter letras, números, pelo menos um caractere especial e ter no mínimo 8 caracteres.') 
             else:
                 user.set_password(newPassword1)
                 user.save()
-                # Realizar o login manualmente após a redefinição da senha
                 user = authenticate(request, email=user.email, password=newPassword1)
                 if user is not None:
                     login(request, user)
 
                 messages.success(request, 'Senha redefinida com sucesso!')
-                return redirect('account')  # Redirecionar para a página de conta após a redefinição da senha
-
+                return redirect('account') 
     else:
         messages.error(request, 'Corrija os erros abaixo.')
 
@@ -112,7 +105,6 @@ def redefinePassword(request, user_id, reset_code):
         'user_id': user_id,
         'reset_code': reset_code,
     }
-
     return render(request, 'redefinePassword.html', context)
 
 @login_required
@@ -127,11 +119,9 @@ def form_logout(request):
 @login_required
 def form_deleteAccount(request):
     if request.method == 'POST':
-        # Obter a confirmação do usuário para excluir a conta
         confirmation = request.POST.get('confirmation', '').strip().lower()
 
         if confirmation == 'excluir':
-            # Excluir a conta do usuário
             request.user.delete()
             messages.success(request, 'Sua conta foi excluída com sucesso.')
             return redirect('home')

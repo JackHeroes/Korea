@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
-from django.http import JsonResponse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -14,12 +14,10 @@ def form_sendEmail(request):
         email = request.POST['email']
         message = request.POST['message']
 
-        # Configuração do e-mail
         sender = settings.EMAIL_HOST_USER
         recipient = 'JohnHeroes@outlook.com.br'
         subject = 'Novo formulário de contato recebido'
         
-        # Corpo do e-mail
         text = f'''
         Nome: {name}
         E-mail: {email}
@@ -27,7 +25,6 @@ def form_sendEmail(request):
         '''
 
         try:
-            # Configuração e envio do e-mail
             send_mail(
                 subject = subject,
                 message = text,
@@ -36,11 +33,9 @@ def form_sendEmail(request):
                 fail_silently = False,
             )
 
-            # Retorna uma resposta JSON indicando sucesso
-            return JsonResponse({'status': 'success'})
+            messages.success(request, 'Formulário enviado com sucesso!')
         except Exception as e:
-            # Retorna uma resposta JSON indicando o erro ocorrido
-            return JsonResponse({'status': 'error', 'message': str(e)})
-
-    # Se o método da requisição não for POST, retorne a página normalmente
+            messages.error(request, 'Erro ao enviar formulário.')
+            
     return render(request, 'index.html')
+    

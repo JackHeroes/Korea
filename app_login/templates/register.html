@@ -27,6 +27,15 @@
                 <section id="banner-container">
                 </section>
                 <section id="register-container">
+                    <div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                     <h1>Crie a sua conta</h1>
                     <form method="post" action="{% url 'register' %}" id="form-register">
                         {% csrf_token %}

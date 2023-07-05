@@ -45,6 +45,7 @@ time, mark, audio, video {
     justify-content: center;
     background-color: #FFFFFF;
     border-radius: 2rem;
+    padding: 2rem;
 }
 
 #container1 {
@@ -162,7 +163,8 @@ time, mark, audio, video {
 #login-container #form-login input,
 #register-container #form-register input,
 #forgotPassword-container #form-forgotPassword input,
-#redefinePassword-container #form-redefinePassword input {
+#redefinePassword-container #form-redefinePassword input,
+#account-container #form-deleteAccount input {
     border: 0.10rem solid #F6689A;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
@@ -174,7 +176,8 @@ time, mark, audio, video {
 #login-container #form-login input:focus,
 #register-container #form-register input:focus,
 #forgotPassword-container #form-forgotPassword input:focus,
-#redefinePassword-container #form-redefinePassword input:focus {
+#redefinePassword-container #form-redefinePassword input:focus,
+#account-container #form-deleteAccount input:focus {
     background: #FFC3D8;
     border: 0.10rem solid #0D1612;
     outline: none;   
@@ -183,7 +186,8 @@ time, mark, audio, video {
 #login-container #form-login::placeholder,
 #register-container #form-register::placeholder,
 #forgotPassword-container #form-forgotPassword::placeholder,
-#redefinePassword-container #form-redefinePassword::placeholder {
+#redefinePassword-container #form-redefinePassword::placeholder,
+#account-container #form-deleteAccount::placeholder {
     color: #F6689A;
 }
 
@@ -243,11 +247,25 @@ time, mark, audio, video {
     color: #FFC3D8;
 }
 
-.alert-success, 
-.alert-danger {
-    color: #F6689A;
+.messages {
+    list-style-type: none;
+    padding: .5rem;
+}
+  
+.message {
+    padding: .5rem;
+    border-radius: .5rem;
+    font-size: 1rem;
     font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    font-weight: bold;
     text-align: center;
+}
+  
+.error {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+  
+.success {
+    background-color: #008000;
+    color: #FFFFFF;
 }

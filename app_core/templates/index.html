@@ -95,6 +95,15 @@
     <main>
         <section class="aboutus">
             <div id="aboutus-container-1">
+                <div>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
                 <h2>Seja Bem vindo a Nossa Doceria</h2>
                 <div id="aboutus-1">
                     <div>
@@ -170,6 +179,5 @@
         <p>Copyright &copy; <span id="year"></span> | João Felipe. Todos os direitos reservados</p>
     </footer>
     <script src="/static/js/homeScripts.js"></script>
-    <script src="/static/js/sendEmail.js"></script>
 </body>
 </html>

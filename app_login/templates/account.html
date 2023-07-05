@@ -25,6 +25,15 @@
             <a href="{% url 'home' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
             <section id="container2">
                 <section id="account-container">
+                    <div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                     <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
                     <h2>Seus dados:</h2>
                     <p><span>Usuário:</span> {{ user.username }}</p>
@@ -43,6 +52,9 @@
                     </form>
                     <form method="post" action="{% url 'deleteAccount' %}" id="form-deleteAccount">
                         {% csrf_token %}
+                        <div class="input-container">
+                            <input type="text" name="confirmation" id="confirmation" placeholder="Digite &quot;excluir&quot; para confirmar" required>
+                        </div>
                         <div class="input-container">
                             <button type="submit">Excluir Conta</button>
                         </div>
