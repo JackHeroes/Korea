@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.conf import settings
-from django.shortcuts import redirect, render
 from django.contrib import messages
+import re
 
 User = get_user_model()
 
@@ -25,9 +26,13 @@ def form_register(request):
         if User.objects.filter(email=email).exists():
             return render(request, 'register.html', {'error': 'Este email já está em uso.'})
 
+        if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', password):
+            return render(request, 'register.html', {'error': 'A senha deve conter pelo menos um caractere especial, letras, números e ter no mínimo 8 caracteres.'})
+
         # Cadastrar o novo usuário
         user = User.objects.create_user(username=username, first_name=firstName, last_name=lastName, email=email, password=password)
         login(request, user)
+        messages.success(request, 'Conta criada com sucesso!')
         return redirect('home')
         
     return render(request, 'register.html')
@@ -86,16 +91,20 @@ def redefinePassword(request, user_id, reset_code):
         if newPassword1 != newPassword2:
             messages.error(request, 'As senhas não coincidem.')
         else:
-            user.set_password(newPassword1)
-            user.save()
-            # Realizar o login manualmente após a redefinição da senha
-            user = authenticate(request, email=user.email, password=newPassword1)
-            if user is not None:
-                login(request, user)
+            # Verificar se a nova senha atende aos critérios
+            if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', newPassword1):
+                messages.error(request, 'A nova senha deve conter pelo menos um caractere especial, letras, números e ter no mínimo 8 caracteres.')
+            else:
+                user.set_password(newPassword1)
+                user.save()
+                # Realizar o login manualmente após a redefinição da senha
+                user = authenticate(request, email=user.email, password=newPassword1)
+                if user is not None:
+                    login(request, user)
 
-            messages.success(request, 'Senha redefinida com sucesso!')
-            return redirect('account')  # Redirecionar para a página de conta após a redefinição da senha
-                
+                messages.success(request, 'Senha redefinida com sucesso!')
+                return redirect('account')  # Redirecionar para a página de conta após a redefinição da senha
+
     else:
         messages.error(request, 'Corrija os erros abaixo.')
 
@@ -118,5 +127,15 @@ def form_logout(request):
 @login_required
 def form_deleteAccount(request):
     if request.method == 'POST':
-        request.user.delete()
-        return redirect('home') 
+        # Obter a confirmação do usuário para excluir a conta
+        confirmation = request.POST.get('confirmation', '').strip().lower()
+
+        if confirmation == 'excluir':
+            # Excluir a conta do usuário
+            request.user.delete()
+            messages.success(request, 'Sua conta foi excluída com sucesso.')
+            return redirect('home')
+        else:
+            messages.error(request, 'Digite "excluir" na caixa de confirmação para excluir sua conta.')
+    
+    return render(request, 'account.html')
