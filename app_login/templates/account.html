@@ -15,7 +15,7 @@
     <meta name="msapplication-TileColor" content="#0d1612">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <meta name="theme-color" content="#0d1612">
-    <link rel="stylesheet" href="/static/css/account.css">
+    <link rel="stylesheet" href="/static/css/login.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
@@ -23,23 +23,31 @@
     <main>
         <section id="background">
             <a href="{% url 'home' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
-            <section id="account-container">
-                <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
-                <h2>Seus dados:</h2>
-                <p><span>Usuário:</span> {{ user.username }}</p>
-                <p><span>Email:</span> {{ user.email }}</p>
-                <form method="post" action="{% url 'forgotPassword' %}">
-                    {% csrf_token %}
-                    <button type="submit">Alterar Senha</button>
-                </form>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Sair</button>
-                </form>
-                <form method="post" action="{% url 'deleteAccount' %}">
-                    {% csrf_token %}
-                    <button type="submit">Excluir Conta</button>
-                </form>
+            <section id="container2">
+                <section id="account-container">
+                    <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
+                    <h2>Seus dados:</h2>
+                    <p><span>Usuário:</span> {{ user.username }}</p>
+                    <p><span>Email:</span> {{ user.email }}</p>
+                    <form method="post" action="{% url 'forgotPassword' %}" id="form-forgotPassword">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <button type="submit">Alterar Senha</button>
+                        </div>
+                    </form>
+                    <form method="post" action="{% url 'logout' %}" id="form-logout">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <button type="submit">Sair</button>
+                        </div>
+                    </form>
+                    <form method="post" action="{% url 'deleteAccount' %}" id="form-deleteAccount">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <button type="submit">Excluir Conta</button>
+                        </div>
+                    </form>
+                </section>
             </section>
         </section>
     </main>
