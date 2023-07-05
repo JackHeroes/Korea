@@ -37,7 +37,8 @@ time, mark, audio, video {
     padding: 2rem;
 }
 
-#container {
+#container1,
+#container2 {
     display: flex;
     width: 80%;
     height: 80%;
@@ -45,6 +46,14 @@ time, mark, audio, video {
     justify-content: center;
     background-color: #FFFFFF;
     border-radius: 2rem;
+}
+
+#container1 {
+    width: 80%;
+}
+
+#container2 {
+    width: 30%;
 }
 
 #banner-container {
@@ -57,17 +66,30 @@ time, mark, audio, video {
 }
 
 #login-container,
-#register-container {
+#register-container,
+#forgotPassword-container,
+#redefinePassword-container {
     height: 100%;
-    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
+#login-container,
+#register-container {
+    width: 40%;
+}
+
+#forgotPassword-container,
+#redefinePassword-container {
+    width: 100%;
+}
+
 #login-container .input-container,
-#register-container .input-container {
+#register-container .input-container,
+#forgotPassword-container .input-container,
+#redefinePassword-container .input-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -79,7 +101,9 @@ time, mark, audio, video {
 }
 
 #login-container h1,
-#register-container h1 {
+#register-container h1,
+#forgotPassword-container h1,
+#redefinePassword-container h1  {
     color: #F6689A;
     font-family: 'Roboto', sans-serif;
     font-size: 3rem;
@@ -89,7 +113,9 @@ time, mark, audio, video {
 }
 
 #login-container #form-login,
-#register-container #form-register {
+#register-container #form-register,
+#forgotPassword-container #form-forgotPassword,
+#redefinePassword-container #form-redefinePassword {
     width: 60%;
     align-items: center;
     justify-content: center;
@@ -98,7 +124,9 @@ time, mark, audio, video {
 }
 
 #login-container #form-login input,
-#register-container #form-register input {
+#register-container #form-register input,
+#forgotPassword-container #form-forgotPassword input,
+#redefinePassword-container #form-redefinePassword input {
     border: 0.10rem solid #F6689A;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
@@ -107,20 +135,25 @@ time, mark, audio, video {
     border-radius: .5rem;
 }
 
-#login-container #form-login input:focus
-#register-container #form-register input:focus {
+#login-container #form-login input:focus,
+#register-container #form-register input:focus,
+#forgotPassword-container #form-forgotPassword input:focus,
+#redefinePassword-container #form-redefinePassword input:focus {
     background: #FFC3D8;
     border: 0.10rem solid #0D1612;
     outline: none;   
 }
 
 #login-container #form-login::placeholder,
-#register-container #form-register::placeholder {
+#register-container #form-register::placeholder,
+#forgotPassword-container #form-forgotPassword::placeholder,
+#redefinePassword-container #form-redefinePassword::placeholder {
     color: #F6689A;
 }
 
-#login-container #form-login #eye,
-#register-container #form-register #eye {
+#login-container #form-login .eye,
+#register-container #form-register .eye,
+#redefinePassword-container #form-redefinePassword .eye {
     position: absolute;
     margin-top: auto;
     margin-bottom: auto;
@@ -130,13 +163,15 @@ time, mark, audio, video {
 }
 
 #login-container #form-login button,
-#register-container #form-register button {
+#register-container #form-register button,
+#forgotPassword-container #form-forgotPassword button,
+#redefinePassword-container #form-redefinePassword button {
     background-color: #F6689A;
     border: none;
     color: #0D1612;
     cursor: pointer;
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 1.5rem 2.5rem;
     text-align: center;
     text-decoration: none;
@@ -147,7 +182,9 @@ time, mark, audio, video {
 }
 
 #login-container #form-login button:hover,
-#register-container #form-register button:hover {
+#register-container #form-register button:hover,
+#redefinePassword-container #form-redefinePassword button:hover,
+#forgotPassword-container #form-forgotPassword button:hover {
     background-color: #FFC3D8;
 }
 
@@ -156,6 +193,7 @@ time, mark, audio, video {
     color: #F6689A;
     font-family: 'Roboto', sans-serif;
     transition: .5s;
+    margin-bottom: 2rem;
 }
 
 #login-container a:hover {

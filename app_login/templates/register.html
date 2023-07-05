@@ -23,7 +23,7 @@
     <main>
         <section id="background">
             <a href="{% url 'login' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
-            <section id="container">
+            <section id="container1">
                 <section id="banner-container">
                 </section>
                 <section id="register-container">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="input-container">
                             <input type="password" name="password" id="password" placeholder="Senha" required>
-                            <i class="bx bx-show-alt" id="eye" onclick="showPassword()"></i>
+                            <i class="eye bx bx-show-alt" onclick="showPassword('password')"></i>
                         </div>
                         <div class="input-container">
                             <button type="submit">Criar conta</button>

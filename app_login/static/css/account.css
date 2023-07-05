@@ -1,0 +1,109 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#background {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+}
+
+#background #return {
+    font-size: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #F6689A;
+    padding: 2rem;
+}
+
+#account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#account-container h1,
+#account-container h2 {
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#account-container h1 {
+    font-size: 3rem;
+}
+
+#account-container h2 {
+    font-size: 2rem;
+}
+
+#account-container p,
+#account-container span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#account-container p {
+    color: #0D1612;
+}
+
+#account-container span {
+    color: #F6689A;
+}
+
+#account-container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+}
+
+#account-container button {
+    background-color: #F6689A;
+    border: none;
+    color: #0D1612;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+    width: 100%;
+    font-weight: bold;
+    border-radius: .5rem;
+}
+
+#account-container button:hover {
+    background-color: #FFC3D8;
+}

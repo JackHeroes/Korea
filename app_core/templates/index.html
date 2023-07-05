@@ -39,7 +39,7 @@
                 </li>
                 <li>
                     <a href="#aboutus-container-2">
-                        <i class="menu-icon bx bx-user"></i>
+                        <i class='menu-icon bx bx-group'></i>
                         <span class="links-name">Sobre Nós</span>
                     </a>
                     <span class="tooltip">Sobre Nós</span>
@@ -72,6 +72,15 @@
                     </a>
                     <span class="tooltip">Entre em Contato Conosco</span>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account' %}">
+                        <i class='menu-icon bx bx-user-circle'></i>
+                        <span class="links-name">Conta</span>
+                    </a>
+                    <span class="tooltip">acesse sua conta</span>
+                </li>
+                {% else %}
                 <li>
                     <a href="{% url 'login' %}">
                         <i class="menu-icon bx bx-log-in-circle"></i>
@@ -79,6 +88,7 @@
                     </a>
                     <span class="tooltip">Faça seu login</span>
                 </li>
+                {% endif %}
             </ul>
         </nav>
     </header>

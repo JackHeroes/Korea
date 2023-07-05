@@ -254,6 +254,7 @@ h2, h3 {
 
 #text-1 p,
 #text-2 p {
+    color: #0D1612;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     letter-spacing: 0.25rem;

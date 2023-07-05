@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Conta</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
@@ -15,7 +15,7 @@
     <meta name="msapplication-TileColor" content="#0d1612">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <meta name="theme-color" content="#0d1612">
-    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/account.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
@@ -23,30 +23,25 @@
     <main>
         <section id="background">
             <a href="{% url 'home' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
-            <section id="container1">
-                <section id="banner-container">
-                </section>
-                <section id="login-container">
-                    <h1>Entre na sua conta</h1>
-                    <form method="post" action="{% url 'login' %}" id="form-login">
-                        {% csrf_token %}
-                        <div class="input-container">
-                            <input type="email" name="email" id="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-container">
-                            <input type="password" name="password" id="password" placeholder="Senha" required>
-                            <i class="eye bx bx-show-alt" onclick="showPassword('password')"></i>
-                        </div>
-                        <div class="input-container">
-                            <button type="submit">Entrar</button>
-                        </div>
-                        <a href="{% url 'forgotPassword' %}">Esqueci a minha senha</a>
-                    </form>
-                    <a href="{% url 'register' %}">Criar conta</a>
-                </section>
+            <section id="account-container">
+                <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
+                <h2>Seus dados:</h2>
+                <p><span>Usuário:</span> {{ user.username }}</p>
+                <p><span>Email:</span> {{ user.email }}</p>
+                <form method="post" action="{% url 'forgotPassword' %}">
+                    {% csrf_token %}
+                    <button type="submit">Alterar Senha</button>
+                </form>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Sair</button>
+                </form>
+                <form method="post" action="{% url 'deleteAccount' %}">
+                    {% csrf_token %}
+                    <button type="submit">Excluir Conta</button>
+                </form>
             </section>
         </section>
     </main>
-    <script src="/static/js/loginScripts.js"></script>
 </body>
 </html>
