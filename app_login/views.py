@@ -74,13 +74,20 @@ def form_login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
+        try:
+            user = User.objects.get(email=email)
+            if not user.check_password(password):
+                messages.error(request, 'Senha incorreta.')
+                return render(request, 'login.html')
+            if not user.is_active:
+                messages.error(request, 'Sua conta ainda não foi verificada.')
+                return render(request, 'login.html')
             login(request, user)
             return redirect('home')
-        else:
-            messages.error(request, 'Credenciais inválidas.')
-            return render(request, 'login.html')
+        except User.DoesNotExist:
+            messages.error(request, 'E-mail não encontrado.')
+        
+        return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
