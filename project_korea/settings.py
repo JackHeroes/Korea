@@ -141,4 +141,3 @@ EMAIL_HOST_USER = 'JohnHeroes@outlook.com.br'  # Insira o seu endereço de e-mai
 EMAIL_HOST_PASSWORD = 'Infinitum2468'  # Insira a senha do seu endereço de e-mail
 DEFAULT_FROM_EMAIL = 'JohnHeroes@outlook.com.br'
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False

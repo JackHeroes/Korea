@@ -1,8 +1,12 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import redirect, render
-from django.core.mail import send_mail
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import send_mail, EmailMessage
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.tokens import default_token_generator
 from django.conf import settings
 from django.contrib import messages
 import re
@@ -19,19 +23,52 @@ def form_register(request):
         password = request.POST['password']
 
         if User.objects.filter(email=email).exists():
-            messages.error(request, 'Este email já está em uso.')
+            messages.error(request, 'Este e-mail já está em uso.')
             return render(request, 'register.html')
 
         if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', password):
             messages.error(request, 'A senha deve conter letras, números, pelo menos um caractere especial e ter no mínimo 8 caracteres.')
             return render(request, 'register.html')
 
-        user = User.objects.create_user(first_name=firstName, last_name=lastName, email=email, password=password)
-        login(request, user)
-        messages.success(request, 'Conta criada com sucesso!')
+        user = User.objects.create_user(email=email, first_name=firstName, last_name=lastName, password=password)
+        user.is_active = False
+        user.save()
+        activateEmail(request, user)
         return redirect('home')
         
     return render(request, 'register.html')
+
+def activateEmail(request, user):
+    mail_subject = 'Ative sua conta de usuário.'
+    message = render_to_string('activateAccount.html', {
+        'user': user,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': default_token_generator.make_token(user),
+    })
+    email = EmailMessage(mail_subject, message, to=[user.email])
+    if email.send():
+        messages.success(request, f'Prezado(a) {user.first_name}, por favor, vá para a caixa de entrada do seu e-mail {user.email} e clique no link de ativação recebido para confirmar e completar o registro. Observação: Verifique sua pasta de spam.')
+    else:
+        messages.error(request, f'Problema ao enviar o e-mail de confirmação para {user.email}, verifique se você digitou corretamente o endereço de e-mail.')
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        messages.success(request, 'Obrigado pela confirmação do seu email. Agora você pode fazer login na sua conta.')
+        return redirect('login')
+    else:
+        messages.error(request, 'O link de ativação é inválido!')
+
+    return redirect('home')
 
 def form_login(request):
     if request.method == 'POST':
@@ -39,11 +76,21 @@ def form_login(request):
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('home')
+            if user.is_active:
+                login(request, user)
+                return redirect('home')
+            else:
+                if user.email:
+                    messages.error(request, 'Você precisa validar seu email antes de fazer login.')
+                else:
+                    messages.error(request, 'Credenciais inválidas.')
         else:
-            messages.error(request, 'Credenciais inválidas.')
-            return render(request, 'login.html')
+            user = User.objects.filter(email=email).first()
+            if user is not None and user.is_active:
+                messages.error(request, 'Senha incorreta. Verifique sua senha e tente novamente.')
+            else:
+                messages.error(request, 'Credenciais inválidas.')
+        return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
