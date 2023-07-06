@@ -25,7 +25,7 @@
             <a href="{% url 'home' %}"><i class="bx bx-left-arrow-alt" id="return"></i></a>
             <section id="container2">
                 <section id="account-container">
-                    <div>
+                    <section id="alert-container">
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
@@ -33,35 +33,54 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                    </div>
-                    <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
-                    <h2>Seus dados:</h2>
-                    <p><span>Usuário:</span> {{ user.username }}</p>
-                    <p><span>Email:</span> {{ user.email }}</p>
-                    <form method="post" action="{% url 'forgotPassword' %}" id="form-forgotPassword">
-                        {% csrf_token %}
+                    </section>
+                    <section>
+                        <h1>Bem-vindo à sua conta, {{ user.first_name }} {{ user.last_name }}!</h1>
+                        <h2>Seus dados:</h2>
+                        <p><span>Usuário:</span> {{ user.username }}</p>
+                        <p><span>Email:</span> {{ user.email }}</p>
+                    </section>
+                    <section class="account-container">
                         <div class="input-container">
-                            <button type="submit">Alterar Senha</button>
+                            <a href="{% url 'forgotPassword' %}">
+                                <button type="submit">
+                                        Alterar Senha
+                                </button>
+                            </a>
                         </div>
-                    </form>
-                    <form method="post" action="{% url 'logout' %}" id="form-logout">
-                        {% csrf_token %}
+                    </section>
+                    <section class="account-container">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <div class="input-container">
+                                <button type="submit">Sair</button>
+                            </div>
+                        </form>
+                    </section>
+                    <section class="account-container">
                         <div class="input-container">
-                            <button type="submit">Sair</button>
+                            <button id="openModalBtn">Excluir Conta</button>
                         </div>
-                    </form>
-                    <form method="post" action="{% url 'deleteAccount' %}" id="form-deleteAccount">
-                        {% csrf_token %}
-                        <div class="input-container">
-                            <input type="text" name="confirmation" id="confirmation" placeholder="Digite &quot;excluir&quot; para confirmar" required>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <i class='close bx bx-x-circle'></i>
+                                <form method="post" action="{% url 'deleteAccount' %}" id="form-deleteAccount">
+                                    {% csrf_token %}
+                                    <div class="input-container">
+                                        <input type="text" name="confirmation" id="confirmation" placeholder="Digite &quot;excluir&quot; para confirmar" required>
+                                    </div>
+                                    <div class="input-container">
+                                        <button type="submit">Excluir Conta</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="input-container">
-                            <button type="submit">Excluir Conta</button>
-                        </div>
-                    </form>
+                    </section>
                 </section>
             </section>
         </section>
     </main>
+    <script src="/static/js/alerts.js"></script>
+    <script src="/static/js/modal.js"></script>
 </body>
 </html>

@@ -103,6 +103,10 @@ time, mark, audio, video {
     margin-bottom: 1rem;
 }
 
+#account-container .input-container{
+    margin-bottom: 0;
+}
+
 #login-container h1,
 #register-container h1,
 #forgotPassword-container h1,
@@ -150,9 +154,7 @@ time, mark, audio, video {
 #register-container #form-register,
 #forgotPassword-container #form-forgotPassword,
 #redefinePassword-container #form-redefinePassword,
-#account-container #form-forgotPassword,
-#account-container #form-logout,
-#account-container #form-deleteAccount {
+.account-container {
     width: 60%;
     align-items: center;
     justify-content: center;
@@ -160,11 +162,15 @@ time, mark, audio, video {
     display: flex;
 }
 
+.account-container form {
+    width: 100%;
+}
+
 #login-container #form-login input,
 #register-container #form-register input,
 #forgotPassword-container #form-forgotPassword input,
 #redefinePassword-container #form-redefinePassword input,
-#account-container #form-deleteAccount input {
+.account-container input {
     border: 0.10rem solid #F6689A;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
@@ -177,7 +183,7 @@ time, mark, audio, video {
 #register-container #form-register input:focus,
 #forgotPassword-container #form-forgotPassword input:focus,
 #redefinePassword-container #form-redefinePassword input:focus,
-#account-container #form-deleteAccount input:focus {
+.account-container input:focus {
     background: #FFC3D8;
     border: 0.10rem solid #0D1612;
     outline: none;   
@@ -187,7 +193,7 @@ time, mark, audio, video {
 #register-container #form-register::placeholder,
 #forgotPassword-container #form-forgotPassword::placeholder,
 #redefinePassword-container #form-redefinePassword::placeholder,
-#account-container #form-deleteAccount::placeholder {
+.account-container::placeholder {
     color: #F6689A;
 }
 
@@ -206,9 +212,7 @@ time, mark, audio, video {
 #register-container #form-register button,
 #forgotPassword-container #form-forgotPassword button,
 #redefinePassword-container #form-redefinePassword button,
-#account-container #form-forgotPassword button,
-#account-container #form-logout button,
-#account-container #form-deleteAccount button {
+.account-container button {
     background-color: #F6689A;
     border: none;
     color: #0D1612;
@@ -228,18 +232,29 @@ time, mark, audio, video {
 #register-container #form-register button:hover,
 #forgotPassword-container #form-forgotPassword button:hover,
 #redefinePassword-container #form-redefinePassword button:hover,
-#account-container #form-forgotPassword button:hover,
-#account-container #form-logout button:hover,
-#account-container #form-deleteAccount button:hover {
+.account-container button:hover {
     background-color: #FFC3D8;
 }
 
-#login-container a {
+#login-container a,
+.account-container a {
     text-decoration: none;
-    color: #F6689A;
     font-family: 'Roboto', sans-serif;
     transition: .5s;
     margin-bottom: 2rem;
+}
+
+#login-container a {
+    color: #F6689A;
+}
+
+.account-container a {
+    width: 100%;
+    color: #0D1612;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 0;
 }
 
 #login-container a:hover {
@@ -268,4 +283,42 @@ time, mark, audio, video {
 .success {
     background-color: #008000;
     color: #FFFFFF;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 20%;
+    border-radius: 2rem;
+}
+  
+.modal-content .close {
+    color: #F6689A;
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: .5s;
+}
+  
+.modal-content .close:hover{
+    color: #FFC3D8;
+    transition: .5s;
+}
+
+.modal-content input {
+    margin-bottom: 1rem;
 }
