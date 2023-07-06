@@ -50,6 +50,10 @@ def form_login(request):
 def forgotPassword(request):
     if request.method == 'POST':
         email = request.POST.get('email')
+
+        if request.user.is_authenticated and request.user.email != email:
+            messages.error(request, 'Email incorreto.')
+            return render(request, 'forgotPassword.html')
         try:
             user = User.objects.get(email=email)
             token = default_token_generator.make_token(user)
@@ -68,7 +72,7 @@ def forgotPassword(request):
             messages.error(request, 'O email fornecido não está associado a uma conta.')
 
     return render(request, 'forgotPassword.html')
-    
+
 def redefinePassword(request, user_id, reset_code):
     try:
         user = User.objects.get(id=user_id)
