@@ -15,7 +15,7 @@ def form_sendEmail(request):
         message = request.POST['message']
 
         sender = settings.EMAIL_HOST_USER
-        recipient = 'JohnHeroes@outlook.com.br'
+        recipient = 'DoceriaKorea@outlook.com.br'
         subject = 'Novo formulário de contato recebido'
         
         text = f'''
