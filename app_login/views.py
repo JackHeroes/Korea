@@ -76,21 +76,11 @@ def form_login(request):
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('home')
-            else:
-                if user.email:
-                    messages.error(request, 'Você precisa validar seu email antes de fazer login.')
-                else:
-                    messages.error(request, 'Credenciais inválidas.')
+            login(request, user)
+            return redirect('home')
         else:
-            user = User.objects.filter(email=email).first()
-            if user is not None and user.is_active:
-                messages.error(request, 'Senha incorreta. Verifique sua senha e tente novamente.')
-            else:
-                messages.error(request, 'Credenciais inválidas.')
-        return render(request, 'login.html')
+            messages.error(request, 'Credenciais inválidas.')
+            return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
