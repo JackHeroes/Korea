@@ -13,16 +13,11 @@ User = get_user_model()
 
 def form_register(request):
     if request.method == 'POST':
-        username = request.POST['username']
         firstName = request.POST['firstName']
         lastName = request.POST['lastName']
         email = request.POST['email']
         password = request.POST['password']
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Este nome de usuário já está em uso.')
-            return render(request, 'register.html')
-        
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Este email já está em uso.')
             return render(request, 'register.html')
@@ -31,7 +26,7 @@ def form_register(request):
             messages.error(request, 'A senha deve conter letras, números, pelo menos um caractere especial e ter no mínimo 8 caracteres.')
             return render(request, 'register.html')
 
-        user = User.objects.create_user(username=username, first_name=firstName, last_name=lastName, email=email, password=password)
+        user = User.objects.create_user(first_name=firstName, last_name=lastName, email=email, password=password)
         login(request, user)
         messages.success(request, 'Conta criada com sucesso!')
         return redirect('home')

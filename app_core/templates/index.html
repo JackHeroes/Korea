@@ -93,17 +93,17 @@
         </nav>
     </header>
     <main>
+        <section id="alert-container">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
         <section class="aboutus">
             <div id="aboutus-container-1">
-                <div id="alert-container">
-                    {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                                <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
                 <h2>Seja Bem vindo a Nossa Doceria</h2>
                 <div id="aboutus-1">
                     <div>

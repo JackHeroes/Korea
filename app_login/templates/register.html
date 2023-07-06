@@ -40,9 +40,6 @@
                     <form method="post" action="{% url 'register' %}" id="form-register">
                         {% csrf_token %}
                         <div class="input-container">
-                            <input type="text" name="username" id="username" placeholder="Usuário" required>
-                        </div>
-                        <div class="input-container">
                             <input type="text" name="firstName" id="firstName" placeholder="Nome" required>
                         </div>
                         <div class="input-container">

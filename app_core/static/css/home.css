@@ -404,6 +404,12 @@ footer p {
 
 /* Message */
 
+#alert-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .messages {
     list-style-type: none;
     padding: .5rem;
