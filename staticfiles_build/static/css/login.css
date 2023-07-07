@@ -1,0 +1,323 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#background {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6689A;
+}
+
+#background #return {
+    font-size: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFFFFF;
+    padding: 2rem;
+}
+
+#container1,
+#container2 {
+    display: flex;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+}
+
+#container1 {
+    width: 80%;
+}
+
+#container2 {
+    width: 30%;
+}
+
+#banner-container {
+    height: 100%;
+    width: 60%;
+    background-image: url(../img/banner.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 2rem 0 0 2rem;
+}
+
+#login-container,
+#register-container,
+#forgotPassword-container,
+#redefinePassword-container,
+#account-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#login-container,
+#register-container {
+    width: 40%;
+}
+
+#forgotPassword-container,
+#redefinePassword-container,
+#account-container {
+    width: 100%;
+}
+
+#login-container .input-container,
+#register-container .input-container,
+#forgotPassword-container .input-container,
+#redefinePassword-container .input-container,
+#account-container .input-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+#account-container .input-container{
+    margin-bottom: 0;
+}
+
+#login-container h1,
+#register-container h1,
+#forgotPassword-container h1,
+#redefinePassword-container h1,
+#account-container h1,
+#account-container h2 {
+    color: #F6689A;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#login-container h1,
+#register-container h1,
+#forgotPassword-container h1,
+#redefinePassword-container h1,
+#account-container h1 {
+    font-size: 3rem;
+}
+
+#account-container h2 {
+    font-size: 2rem;
+    margin-top: 0rem;
+}
+
+#account-container p,
+#account-container span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#account-container p {
+    color: #0D1612;
+}
+
+#account-container span {
+    color: #F6689A;
+}
+
+#login-container #form-login,
+#register-container #form-register,
+#forgotPassword-container #form-forgotPassword,
+#redefinePassword-container #form-redefinePassword,
+.account-container {
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.account-container form {
+    width: 100%;
+}
+
+#login-container #form-login input,
+#register-container #form-register input,
+#forgotPassword-container #form-forgotPassword input,
+#redefinePassword-container #form-redefinePassword input,
+.account-container input {
+    border: 0.10rem solid #F6689A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: .5rem;
+}
+
+#login-container #form-login input:focus,
+#register-container #form-register input:focus,
+#forgotPassword-container #form-forgotPassword input:focus,
+#redefinePassword-container #form-redefinePassword input:focus,
+.account-container input:focus {
+    background: #FFC3D8;
+    border: 0.10rem solid #0D1612;
+    outline: none;   
+}
+
+#login-container #form-login::placeholder,
+#register-container #form-register::placeholder,
+#forgotPassword-container #form-forgotPassword::placeholder,
+#redefinePassword-container #form-redefinePassword::placeholder,
+.account-container::placeholder {
+    color: #F6689A;
+}
+
+#login-container #form-login .eye,
+#register-container #form-register .eye,
+#redefinePassword-container #form-redefinePassword .eye {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #F6689A;
+    cursor: pointer;
+    right: 0;
+}
+
+#login-container #form-login button,
+#register-container #form-register button,
+#forgotPassword-container #form-forgotPassword button,
+#redefinePassword-container #form-redefinePassword button,
+.account-container button {
+    background-color: #F6689A;
+    border: none;
+    color: #0D1612;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+    width: 80%;
+    font-weight: bold;
+    border-radius: .5rem;
+}
+
+#login-container #form-login button:hover,
+#register-container #form-register button:hover,
+#forgotPassword-container #form-forgotPassword button:hover,
+#redefinePassword-container #form-redefinePassword button:hover,
+.account-container button:hover {
+    background-color: #FFC3D8;
+}
+
+#login-container a,
+.account-container a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    transition: .5s;
+    margin-bottom: 2rem;
+}
+
+#login-container a {
+    color: #F6689A;
+}
+
+.account-container a {
+    width: 100%;
+    color: #0D1612;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 0;
+}
+
+#login-container a:hover {
+    transition: .5s;
+    color: #FFC3D8;
+}
+
+.messages {
+    list-style-type: none;
+    padding: .5rem;
+}
+  
+.message {
+    padding: .5rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+  
+.error {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+  
+.success {
+    background-color: #008000;
+    color: #FFFFFF;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 20%;
+    border-radius: 2rem;
+}
+  
+.modal-content .close {
+    color: #F6689A;
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: .5s;
+}
+  
+.modal-content .close:hover{
+    color: #FFC3D8;
+    transition: .5s;
+}
+
+.modal-content input {
+    margin-bottom: 1rem;
+}
