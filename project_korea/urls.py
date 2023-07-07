@@ -24,5 +24,3 @@ urlpatterns = [
     path('', include('app_core.urls')),
     path('', include('app_login.urls')),
 ]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
