@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'project_korea.wsgi.app'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'korea',
         'USER': 'root',
         'PASSWORD': 'Anfeidrol2468',
